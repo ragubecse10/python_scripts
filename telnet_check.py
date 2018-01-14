@@ -1,5 +1,7 @@
-import commands
+import socket
 ip='172.31.31.54'
-cmd="nmap -A " + ip + " -p 22 | grep open | grep /tcp | wc -l"
-status,output = commands.getstatusoutput(cmd)
-print ip + ":" +output
+port=24
+sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+sock.settimeout(1)
+result = sock.connect_ex((ip,port))
+print result
